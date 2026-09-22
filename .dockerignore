@@ -1,0 +1,9 @@
+  # node_modules do host NUNCA entra na imagem: foi construído para glibc/Debian,
+# a imagem é Alpine/musl. Além de quebrar módulos nativos, invalida o cache.
+**/node_modules
+results/
+scripts/
+load/
+*.md
+.git
+bench.env
