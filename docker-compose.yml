@@ -1,0 +1,62 @@
+# Este compose é para CONFERÊNCIA MANUAL, não para a coleta.
+# A coleta usa scripts/3-bench.sh, que sobe um container por vez e verifica
+# os limites antes de cada execução.
+#
+# NÃO volte para `deploy.resources.limits`: é sintaxe de Swarm e fora dele pode
+# ser ignorada em silêncio — o experimento rodaria sem isolamento nenhum.
+# Confirme sempre:
+#   docker inspect -f '{{.HostConfig.NanoCpus}} {{.HostConfig.Memory}}' bench-express
+#   esperado: 1000000000 536870912
+
+services:
+  express-api:
+    profiles: ["express"]
+    build:
+      context: .                          # raiz: a imagem precisa de common/
+      dockerfile: express-api/Dockerfile
+    container_name: bench-express
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      ITEMS: "${ITEMS:-50}"
+      VALIDATION: "${VALIDATION:-off}"     # off | ajv | zod
+      IO_DELAY_MS: "${IO_DELAY_MS:-0}"     # 0 | 5 | 50
+      EXTRA_ROUTES: "${EXTRA_ROUTES:-0}"
+      EXTRA_MIDDLEWARES: "${EXTRA_MIDDLEWARES:-0}"
+    cpus: 1.0
+    cpuset: "${SERVER_CPU:-2}"
+    mem_limit: 512m
+    memswap_limit: 512m                    # igual a mem_limit: sem swap
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/internal/health"]
+      interval: 2s
+      timeout: 2s
+      retries: 15
+
+  fastify-api:
+    profiles: ["fastify"]
+    build:
+      context: .
+      dockerfile: fastify-api/Dockerfile
+    container_name: bench-fastify
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      ITEMS: "${ITEMS:-50}"
+      SCHEMA: "${SCHEMA:-off}"             # off | on
+      IO_DELAY_MS: "${IO_DELAY_MS:-0}"
+      EXTRA_ROUTES: "${EXTRA_ROUTES:-0}"
+      EXTRA_HOOKS: "${EXTRA_HOOKS:-0}"
+    cpus: 1.0
+    cpuset: "${SERVER_CPU:-2}"
+    mem_limit: 512m
+    memswap_limit: 512m
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/internal/health"]
+      interval: 2s
+      timeout: 2s
+      retries: 15
