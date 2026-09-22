@@ -1,0 +1,14 @@
+{
+  "nome":"Cliente de Teste do Benchmark",
+  "email":"cliente.teste@benchmark.local",
+  "idade":29,
+  "ativo":true,
+  "tags":["benchmark","node","api"],
+  "endereco":{
+    "rua":"Rua Projetada 12",
+    "numero":345,
+    "cidade":"Quixada",
+    "uf":"CE",
+    "cep":"63900-000"
+  }
+}
