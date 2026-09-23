@@ -42,8 +42,14 @@ if grep -qiE 'microsoft|wsl' /proc/version 2>/dev/null; then
 else
   ok "kernel nativo $(uname -r)"
 fi
-VIRT=$(systemd-detect-virt 2>/dev/null || echo none)
-[ "$VIRT" = "none" ] && ok "sem virtualização" || bad "virtualização detectada ($VIRT)"
+# systemd-detect-virt sai com código 1 quando NÃO há virtualização, então
+# `|| echo none` duplicava a saída e a comparação falhava. O -q é silencioso
+# e devolve 0 apenas quando encontra alguma camada de virtualização.
+if systemd-detect-virt -q 2>/dev/null; then
+  bad "virtualização detectada ($(systemd-detect-virt 2>/dev/null))"
+else
+  ok "sem virtualização"
+fi
 
 CG=$(stat -fc %T /sys/fs/cgroup 2>/dev/null)
 [ "$CG" = "cgroup2fs" ] && ok "cgroup v2" || bad "cgroup=$CG"
