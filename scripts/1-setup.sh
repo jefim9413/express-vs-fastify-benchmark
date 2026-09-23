@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # =============================================================================
 # 1-setup.sh — prepara o hospedeiro e decide a pinagem de cores.
 #
