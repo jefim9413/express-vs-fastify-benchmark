@@ -1,0 +1,17 @@
+endpoint,io_ms,concorrencia,comparacao,ganho_pct,p_mann_whitney,cliffs_delta,magnitude
+get,5,100,fastify-plain vs express-plain,27.77,0.00794,1.0,grande
+get,5,100,fastify-schema vs express-zod,7.02,0.00794,1.0,grande
+get,5,100,express-zod vs express-plain,-0.82,0.09524,-0.68,grande
+get,5,100,fastify-schema vs fastify-plain,-16.92,0.00794,-1.0,grande
+get,50,100,fastify-plain vs express-plain,-0.26,0.42063,-0.36,medio
+get,50,100,fastify-schema vs express-zod,-1.52,0.00794,-1.0,grande
+get,50,100,express-zod vs express-plain,-0.08,0.34127,-0.4,medio
+get,50,100,fastify-schema vs fastify-plain,-1.34,0.00794,-1.0,grande
+post,5,100,fastify-plain vs express-plain,26.78,0.00794,1.0,grande
+post,5,100,fastify-schema vs express-zod,24.47,0.00794,1.0,grande
+post,5,100,express-zod vs express-plain,0.15,0.84127,0.12,desprezivel
+post,5,100,fastify-schema vs fastify-plain,-1.67,0.00794,-1.0,grande
+post,50,100,fastify-plain vs express-plain,-0.33,0.00794,-1.0,grande
+post,50,100,fastify-schema vs express-zod,-0.3,0.00794,-1.0,grande
+post,50,100,express-zod vs express-plain,0.04,0.69048,0.2,pequeno
+post,50,100,fastify-schema vs fastify-plain,0.06,0.54762,0.28,pequeno

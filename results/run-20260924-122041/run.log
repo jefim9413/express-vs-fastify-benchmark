@@ -1,0 +1,89 @@
+[12:20:41] build
+[12:20:42] autocannon autocannon v8.0.0
+[12:20:42] saída: results/run-20260924-122041 | 80 execuções | ~133 min
+[12:20:42] == repetição 1/5 ==
+[12:20:42]   fastify-schema__get__io5__c100__r1
+[12:22:25]   fastify-schema__get__io50__c100__r1
+[12:24:06]   fastify-schema__post__io5__c100__r1
+[12:25:48]   fastify-schema__post__io50__c100__r1
+[12:27:29]   express-plain__get__io5__c100__r1
+[12:29:12]   express-plain__get__io50__c100__r1
+[12:30:54]   express-plain__post__io5__c100__r1
+[12:32:37]   express-plain__post__io50__c100__r1
+[12:34:19]   express-zod__get__io5__c100__r1
+[12:36:02]   express-zod__get__io50__c100__r1
+[12:37:44]   express-zod__post__io5__c100__r1
+[12:39:27]   express-zod__post__io50__c100__r1
+[12:41:08]   fastify-plain__get__io5__c100__r1
+[12:42:50]   fastify-plain__get__io50__c100__r1
+[12:44:32]   fastify-plain__post__io5__c100__r1
+[12:46:14]   fastify-plain__post__io50__c100__r1
+[12:47:56] == repetição 2/5 ==
+[12:47:56]   fastify-schema__get__io5__c100__r2
+[12:49:38]   fastify-schema__get__io50__c100__r2
+[12:51:20]   fastify-schema__post__io5__c100__r2
+[12:53:02]   fastify-schema__post__io50__c100__r2
+[12:54:44]   express-plain__get__io5__c100__r2
+[12:56:25]   express-plain__get__io50__c100__r2
+[12:58:08]   express-plain__post__io5__c100__r2
+[12:59:50]   express-plain__post__io50__c100__r2
+[13:01:33]   fastify-plain__get__io5__c100__r2
+[13:03:15]   fastify-plain__get__io50__c100__r2
+[13:04:58]   fastify-plain__post__io5__c100__r2
+[13:06:39]   fastify-plain__post__io50__c100__r2
+[13:08:21]   express-zod__get__io5__c100__r2
+[13:10:03]   express-zod__get__io50__c100__r2
+[13:11:46]   express-zod__post__io5__c100__r2
+[13:13:28]   express-zod__post__io50__c100__r2
+[13:15:10] == repetição 3/5 ==
+[13:15:10]   fastify-plain__get__io5__c100__r3
+[13:16:52]   fastify-plain__get__io50__c100__r3
+[13:18:34]   fastify-plain__post__io5__c100__r3
+[13:20:16]   fastify-plain__post__io50__c100__r3
+[13:21:58]   express-zod__get__io5__c100__r3
+[13:23:40]   express-zod__get__io50__c100__r3
+[13:25:21]   express-zod__post__io5__c100__r3
+[13:27:04]   express-zod__post__io50__c100__r3
+[13:28:46]   fastify-schema__get__io5__c100__r3
+[13:30:29]   fastify-schema__get__io50__c100__r3
+[13:32:10]   fastify-schema__post__io5__c100__r3
+[13:33:53]   fastify-schema__post__io50__c100__r3
+[13:35:34]   express-plain__get__io5__c100__r3
+[13:37:17]   express-plain__get__io50__c100__r3
+[13:38:59]   express-plain__post__io5__c100__r3
+[13:40:42]   express-plain__post__io50__c100__r3
+[13:42:24] == repetição 4/5 ==
+[13:42:24]   fastify-schema__get__io5__c100__r4
+[13:44:07]   fastify-schema__get__io50__c100__r4
+[13:45:48]   fastify-schema__post__io5__c100__r4
+[13:47:30]   fastify-schema__post__io50__c100__r4
+[13:49:12]   fastify-plain__get__io5__c100__r4
+[13:50:54]   fastify-plain__get__io50__c100__r4
+[13:52:36]   fastify-plain__post__io5__c100__r4
+[13:54:18]   fastify-plain__post__io50__c100__r4
+[13:56:01]   express-plain__get__io5__c100__r4
+[13:57:43]   express-plain__get__io50__c100__r4
+[13:59:26]   express-plain__post__io5__c100__r4
+[14:01:08]   express-plain__post__io50__c100__r4
+[14:02:50]   express-zod__get__io5__c100__r4
+[14:04:32]   express-zod__get__io50__c100__r4
+[14:06:15]   express-zod__post__io5__c100__r4
+[14:07:57]   express-zod__post__io50__c100__r4
+[14:09:40] == repetição 5/5 ==
+[14:09:40]   fastify-plain__get__io5__c100__r5
+[14:11:22]   fastify-plain__get__io50__c100__r5
+[14:13:05]   fastify-plain__post__io5__c100__r5
+[14:14:47]   fastify-plain__post__io50__c100__r5
+[14:16:29]   express-plain__get__io5__c100__r5
+[14:18:11]   express-plain__get__io50__c100__r5
+[14:19:53]   express-plain__post__io5__c100__r5
+[14:21:35]   express-plain__post__io50__c100__r5
+[14:23:18]   fastify-schema__get__io5__c100__r5
+[14:25:00]   fastify-schema__get__io50__c100__r5
+[14:26:42]   fastify-schema__post__io5__c100__r5
+[14:28:24]   fastify-schema__post__io50__c100__r5
+[14:30:06]   express-zod__get__io5__c100__r5
+[14:31:48]   express-zod__get__io50__c100__r5
+[14:33:31]   express-zod__post__io5__c100__r5
+[14:35:13]   express-zod__post__io50__c100__r5
+[14:36:54] concluído. rode: python3 scripts/4-analyze.py results/run-20260924-122041
