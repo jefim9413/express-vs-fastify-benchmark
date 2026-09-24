@@ -1,0 +1,1 @@
+{"framework":"express","validation":"off","uptimeMs":71810,"eventLoopDelay":{"meanMs":28.93811779018287,"p50Ms":27.508735,"p95Ms":34.373631,"p99Ms":34.701311,"maxMs":37.650431},"memoryMb":{"rss":97.7578125,"heapUsed":18.531227111816406,"heapTotal":25.58984375,"external":2.0208511352539062}}
