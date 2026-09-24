@@ -65,9 +65,12 @@ def parse_dir(outdir):
         if os.path.exists(stats_path):
             with open(stats_path) as fh:
                 for r in csv.DictReader(fh):
+                    c, m = _clean(r.get("cpu_percent")), _clean(r.get("mem_usage_mb"))
+                    if not c or not m:
+                        continue          # linha final vazia do docker stats
                     try:
-                        cpu_vals.append(float(r["cpu_percent"]))
-                        mem_vals.append(_to_mb(r["mem_usage_mb"]))
+                        cpu_vals.append(float(c))
+                        mem_vals.append(_to_mb(m))
                     except (ValueError, KeyError):
                         pass
 
@@ -112,6 +115,16 @@ def parse_dir(outdir):
         })
     return rows
 
+import re
+
+# O `docker stats` em streaming emite sequências ANSI de controle de tela
+# (\x1b[H para mover o cursor, \x1b[K para limpar a linha) mesmo sem TTY.
+# Sem remover isso, float('\x1b[H0.22') estoura e TODAS as amostras de
+# CPU/RAM são descartadas em silêncio.
+_ANSI = re.compile(r'\x1b\[[0-9;?]*[A-Za-z]')
+
+def _clean(txt):
+    return _ANSI.sub('', txt or '').strip()
 
 def _to_mb(txt):
     txt = txt.strip()
