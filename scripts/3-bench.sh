@@ -150,7 +150,7 @@ run_case() {
   start_container "$image" "$envs IO_DELAY_MS=$io"
 
   local body=()
-  [ "$ep" = "post" ] && body=(-m POST -H 'content-type=application/json' -b "@load/payload.json")
+  [ "$ep" = "post" ] && body=(-m POST -H 'content-type=application/json' -i load/payload.json)
 
   # 1) warm-up descartado: JIT do V8 e estabilização de heap
   "${PIN[@]}" "$AC" -c "$conc" -d "$WARMUP" -p 1 -w "$WORKERS" \
