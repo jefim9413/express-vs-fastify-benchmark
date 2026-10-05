@@ -27,6 +27,7 @@ CONCURRENCIES="${CONCURRENCIES:-10 100 500}"
 ENDPOINTS="${ENDPOINTS:-get post}"
 IO_DELAYS="${IO_DELAYS:-0}"      # ms de latência de dependência simulada
 ITEMS="${ITEMS:-50}"
+EXTRA_ROUTES="${EXTRA_ROUTES:-0}"   # rotas de enchimento registradas ANTES das medidas
 WORKERS="${WORKERS:-4}"          # autocannon é single-thread por padrão
 CPU_LIMIT="${CPU_LIMIT:-1.0}"
 MEM_LIMIT="${MEM_LIMIT:-512m}"
@@ -44,6 +45,24 @@ ARMS=(
 # Arm de controle: mesmo Ajv dos dois lados. Separa "vantagem do framework"
 # de "vantagem da biblioteca de validação".
 [ "${WITH_AJV_ARM:-0}" = "1" ] && ARMS+=("express-ajv|bench-express|VALIDATION=ajv")
+
+# Recorte da matriz por arm, ex.: ONLY_ARMS="express-plain fastify-plain".
+# Serve para isolar um fator que nao interage com validacao (roteamento,
+# middlewares, hooks) sem precisar editar ARMS na vespera da entrega.
+if [ -n "${ONLY_ARMS:-}" ]; then
+  _KEPT=()
+  for _entry in "${ARMS[@]}"; do
+    for _name in $ONLY_ARMS; do
+      if [ "${_entry%%|*}" = "$_name" ]; then _KEPT+=("$_entry"); fi
+    done
+  done
+  if [ "${#_KEPT[@]}" -eq 0 ]; then
+    echo "ERRO: ONLY_ARMS='$ONLY_ARMS' nao casou com nenhum arm conhecido" >&2
+    printf 'arms disponiveis: '; printf '%s ' "${ARMS[@]%%|*}"; echo
+    exit 1
+  fi
+  ARMS=("${_KEPT[@]}")
+fi
 
 if command -v taskset >/dev/null 2>&1 && [ -n "${LOAD_CPUS:-}" ]; then
   PIN=(taskset -c "$LOAD_CPUS")
@@ -68,7 +87,7 @@ log() { echo "[$(date +%H:%M:%S)] $*" | tee -a "$OUT/run.log"; }
   echo "l3 do alvo    : $(cat /sys/devices/system/cpu/cpu$SERVER_CPU/cache/index3/shared_cpu_list 2>/dev/null)"
   echo "irmão smt     : $(cat /sys/devices/system/cpu/cpu$SERVER_CPU/topology/thread_siblings_list 2>/dev/null)"
   echo "governor      : $(cat /sys/devices/system/cpu/cpu$SERVER_CPU/cpufreq/scaling_governor 2>/dev/null)"
-  echo "modo          : target=$TARGET_HOST network=$NETWORK_MODE items=$ITEMS workers=$WORKERS"
+  echo "modo          : target=$TARGET_HOST network=$NETWORK_MODE items=$ITEMS routes=$EXTRA_ROUTES workers=$WORKERS"
   echo "matriz        : arms=${#ARMS[@]} endpoints=[$ENDPOINTS] io=[$IO_DELAYS] conc=[$CONCURRENCIES] reps=$REPS"
   echo "--- topologia ---"; lscpu -e 2>/dev/null || true
 } > "$OUT/environment.txt"
@@ -147,7 +166,7 @@ run_case() {
   local arm="$1" image="$2" envs="$3" ep="$4" io="$5" conc="$6" rep="$7"
   local tag="${arm}__${ep}__io${io}__c${conc}__r${rep}"
   log "  $tag"
-  start_container "$image" "$envs IO_DELAY_MS=$io"
+  start_container "$image" "$envs IO_DELAY_MS=$io EXTRA_ROUTES=$EXTRA_ROUTES"
 
   local body=()
   [ "$ep" = "post" ] && body=(-m POST -H 'content-type=application/json' -i load/payload.json)
