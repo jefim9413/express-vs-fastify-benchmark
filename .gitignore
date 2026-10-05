@@ -1,4 +1,6 @@
 node_modules/
 results/run-*/
 bench.env
-*.log
+*.logpiloto/
+piloto/
+__pycache__/

@@ -1,0 +1,2 @@
+fator,endpoint,concorrencia,comparacao,interpretacao,niveis,ganho_por_nivel_pct,amplitude_pp,tendencia,sessoes
+rotas (EXTRA_ROUTES),get,100,fastify-plain vs express-plain,efeito puro do framework,0 50 200,+137.23 +148.25 +183.79,46.56,cresce,1

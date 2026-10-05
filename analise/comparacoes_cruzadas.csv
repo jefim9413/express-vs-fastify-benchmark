@@ -1,0 +1,91 @@
+items,routes,endpoint,io_ms,concorrencia,comparacao,interpretacao,ganho_pct,p_mann_whitney,p_no_piso,cliffs_delta,magnitude,n_a,n_b,mesma_sessao
+1,0,get,0,10,fastify-plain vs express-plain,efeito puro do framework,414.19,0.00794,sim,1.0,grande,5,5,sim
+1,0,get,0,10,fastify-schema vs express-zod,cenario realista de mercado,395.02,0.00794,sim,1.0,grande,5,5,sim
+1,0,get,0,10,express-zod vs express-plain,custo da validacao no Express,0.8,1.0,nao,0.04,desprezivel,5,5,sim
+1,0,get,0,10,fastify-schema vs fastify-plain,efeito do schema no Fastify,-2.96,0.00794,sim,-1.0,grande,5,5,sim
+1,0,get,0,100,fastify-plain vs express-plain,efeito puro do framework,406.81,0.00794,sim,1.0,grande,5,5,sim
+1,0,get,0,100,fastify-schema vs express-zod,cenario realista de mercado,374.51,0.00794,sim,1.0,grande,5,5,sim
+1,0,get,0,100,express-zod vs express-plain,custo da validacao no Express,1.22,0.54762,nao,0.28,pequeno,5,5,sim
+1,0,get,0,100,fastify-schema vs fastify-plain,efeito do schema no Fastify,-5.23,0.00794,sim,-1.0,grande,5,5,sim
+1,0,get,0,500,fastify-plain vs express-plain,efeito puro do framework,431.34,0.00794,sim,1.0,grande,5,5,sim
+1,0,get,0,500,fastify-schema vs express-zod,cenario realista de mercado,412.04,0.00794,sim,1.0,grande,5,5,sim
+1,0,get,0,500,express-zod vs express-plain,custo da validacao no Express,0.0,0.84127,nao,-0.12,desprezivel,5,5,sim
+1,0,get,0,500,fastify-schema vs fastify-plain,efeito do schema no Fastify,-3.63,0.00794,sim,-1.0,grande,5,5,sim
+1,0,post,0,10,fastify-plain vs express-plain,efeito puro do framework,203.71,0.00794,sim,1.0,grande,5,5,sim
+1,0,post,0,10,fastify-schema vs express-zod,cenario realista de mercado,202.49,0.00794,sim,1.0,grande,5,5,sim
+1,0,post,0,10,express-zod vs express-plain,custo da validacao no Express,-7.43,0.00794,sim,-1.0,grande,5,5,sim
+1,0,post,0,10,fastify-schema vs fastify-plain,efeito do schema no Fastify,-7.8,0.00794,sim,-1.0,grande,5,5,sim
+1,0,post,0,100,fastify-plain vs express-plain,efeito puro do framework,199.25,0.00794,sim,1.0,grande,5,5,sim
+1,0,post,0,100,fastify-schema vs express-zod,cenario realista de mercado,194.78,0.00794,sim,1.0,grande,5,5,sim
+1,0,post,0,100,express-zod vs express-plain,custo da validacao no Express,-6.65,0.00794,sim,-1.0,grande,5,5,sim
+1,0,post,0,100,fastify-schema vs fastify-plain,efeito do schema no Fastify,-8.04,0.00794,sim,-1.0,grande,5,5,sim
+1,0,post,0,500,fastify-plain vs express-plain,efeito puro do framework,199.21,0.00794,sim,1.0,grande,5,5,sim
+1,0,post,0,500,fastify-schema vs express-zod,cenario realista de mercado,202.76,0.00794,sim,1.0,grande,5,5,sim
+1,0,post,0,500,express-zod vs express-plain,custo da validacao no Express,-7.69,0.00794,sim,-1.0,grande,5,5,sim
+1,0,post,0,500,fastify-schema vs fastify-plain,efeito do schema no Fastify,-6.59,0.00794,sim,-1.0,grande,5,5,sim
+50,0,get,0,10,fastify-plain vs express-plain,efeito puro do framework,149.72,0.00794,sim,1.0,grande,5,5,sim
+50,0,get,0,10,fastify-schema vs express-zod,cenario realista de mercado,51.31,0.00794,sim,1.0,grande,5,5,sim
+50,0,get,0,10,express-zod vs express-plain,custo da validacao no Express,-0.36,0.84127,nao,-0.12,desprezivel,5,5,sim
+50,0,get,0,10,fastify-schema vs fastify-plain,efeito do schema no Fastify,-39.63,0.00794,sim,-1.0,grande,5,5,sim
+50,0,get,0,100,fastify-plain vs express-plain,efeito puro do framework,139.41,1e-05,sim,1.0,grande,10,10,sim
+50,0,get,0,100,fastify-schema vs express-zod,cenario realista de mercado,46.9,0.00794,sim,1.0,grande,5,5,sim
+50,0,get,0,100,express-zod vs express-plain,custo da validacao no Express,0.44,1.0,nao,0.0,desprezivel,10,5,sim
+50,0,get,0,100,fastify-schema vs fastify-plain,efeito do schema no Fastify,-38.37,0.00067,sim,-1.0,grande,10,5,sim
+50,0,get,0,500,fastify-plain vs express-plain,efeito puro do framework,153.28,0.00794,sim,1.0,grande,5,5,sim
+50,0,get,0,500,fastify-schema vs express-zod,cenario realista de mercado,56.18,0.00794,sim,1.0,grande,5,5,sim
+50,0,get,0,500,express-zod vs express-plain,custo da validacao no Express,0.53,1.0,nao,-0.04,desprezivel,5,5,sim
+50,0,get,0,500,fastify-schema vs fastify-plain,efeito do schema no Fastify,-38.01,0.00794,sim,-1.0,grande,5,5,sim
+50,0,get,5,100,fastify-plain vs express-plain,efeito puro do framework,27.77,0.00794,sim,1.0,grande,5,5,sim
+50,0,get,5,100,fastify-schema vs express-zod,cenario realista de mercado,7.02,0.00794,sim,1.0,grande,5,5,sim
+50,0,get,5,100,express-zod vs express-plain,custo da validacao no Express,-0.82,0.09524,nao,-0.68,grande,5,5,sim
+50,0,get,5,100,fastify-schema vs fastify-plain,efeito do schema no Fastify,-16.92,0.00794,sim,-1.0,grande,5,5,sim
+50,0,get,50,100,fastify-plain vs express-plain,efeito puro do framework,-0.26,0.42063,nao,-0.36,medio,5,5,sim
+50,0,get,50,100,fastify-schema vs express-zod,cenario realista de mercado,-1.52,0.00794,sim,-1.0,grande,5,5,sim
+50,0,get,50,100,express-zod vs express-plain,custo da validacao no Express,-0.08,0.34127,nao,-0.4,medio,5,5,sim
+50,0,get,50,100,fastify-schema vs fastify-plain,efeito do schema no Fastify,-1.34,0.00794,sim,-1.0,grande,5,5,sim
+50,0,post,0,10,fastify-plain vs express-plain,efeito puro do framework,199.99,0.00794,sim,1.0,grande,5,5,sim
+50,0,post,0,10,fastify-schema vs express-zod,cenario realista de mercado,203.41,0.00794,sim,1.0,grande,5,5,sim
+50,0,post,0,10,express-zod vs express-plain,custo da validacao no Express,-8.03,0.00794,sim,-1.0,grande,5,5,sim
+50,0,post,0,10,fastify-schema vs fastify-plain,efeito do schema no Fastify,-6.98,0.00794,sim,-1.0,grande,5,5,sim
+50,0,post,0,100,fastify-plain vs express-plain,efeito puro do framework,200.55,0.00794,sim,1.0,grande,5,5,sim
+50,0,post,0,100,fastify-schema vs express-zod,cenario realista de mercado,193.42,0.00794,sim,1.0,grande,5,5,sim
+50,0,post,0,100,express-zod vs express-plain,custo da validacao no Express,-6.97,0.00794,sim,-1.0,grande,5,5,sim
+50,0,post,0,100,fastify-schema vs fastify-plain,efeito do schema no Fastify,-9.18,0.00794,sim,-1.0,grande,5,5,sim
+50,0,post,0,500,fastify-plain vs express-plain,efeito puro do framework,197.83,0.00794,sim,1.0,grande,5,5,sim
+50,0,post,0,500,fastify-schema vs express-zod,cenario realista de mercado,201.76,0.00794,sim,1.0,grande,5,5,sim
+50,0,post,0,500,express-zod vs express-plain,custo da validacao no Express,-8.98,0.00794,sim,-1.0,grande,5,5,sim
+50,0,post,0,500,fastify-schema vs fastify-plain,efeito do schema no Fastify,-7.78,0.00794,sim,-1.0,grande,5,5,sim
+50,0,post,5,100,fastify-plain vs express-plain,efeito puro do framework,26.78,0.00794,sim,1.0,grande,5,5,sim
+50,0,post,5,100,fastify-schema vs express-zod,cenario realista de mercado,24.47,0.00794,sim,1.0,grande,5,5,sim
+50,0,post,5,100,express-zod vs express-plain,custo da validacao no Express,0.15,0.84127,nao,0.12,desprezivel,5,5,sim
+50,0,post,5,100,fastify-schema vs fastify-plain,efeito do schema no Fastify,-1.67,0.00794,sim,-1.0,grande,5,5,sim
+50,0,post,50,100,fastify-plain vs express-plain,efeito puro do framework,-0.33,0.00794,sim,-1.0,grande,5,5,sim
+50,0,post,50,100,fastify-schema vs express-zod,cenario realista de mercado,-0.3,0.00794,sim,-1.0,grande,5,5,sim
+50,0,post,50,100,express-zod vs express-plain,custo da validacao no Express,0.04,0.69048,nao,0.2,pequeno,5,5,sim
+50,0,post,50,100,fastify-schema vs fastify-plain,efeito do schema no Fastify,0.06,0.54762,nao,0.28,pequeno,5,5,sim
+50,50,get,0,100,fastify-plain vs express-plain,efeito puro do framework,148.25,0.00794,sim,1.0,grande,5,5,sim
+50,200,get,0,100,fastify-plain vs express-plain,efeito puro do framework,183.79,0.00794,sim,1.0,grande,5,5,sim
+200,0,get,0,10,fastify-plain vs express-plain,efeito puro do framework,58.54,0.00794,sim,1.0,grande,5,5,sim
+200,0,get,0,10,fastify-schema vs express-zod,cenario realista de mercado,-8.52,0.00794,sim,-1.0,grande,5,5,sim
+200,0,get,0,10,express-zod vs express-plain,custo da validacao no Express,0.25,0.54762,nao,0.28,pequeno,5,5,sim
+200,0,get,0,10,fastify-schema vs fastify-plain,efeito do schema no Fastify,-42.16,0.00794,sim,-1.0,grande,5,5,sim
+200,0,get,0,100,fastify-plain vs express-plain,efeito puro do framework,62.81,0.00794,sim,1.0,grande,5,5,sim
+200,0,get,0,100,fastify-schema vs express-zod,cenario realista de mercado,-6.45,0.00794,sim,-1.0,grande,5,5,sim
+200,0,get,0,100,express-zod vs express-plain,custo da validacao no Express,-0.46,0.69048,nao,-0.2,pequeno,5,5,sim
+200,0,get,0,100,fastify-schema vs fastify-plain,efeito do schema no Fastify,-42.81,0.00794,sim,-1.0,grande,5,5,sim
+200,0,get,0,500,fastify-plain vs express-plain,efeito puro do framework,66.0,0.00794,sim,1.0,grande,5,5,sim
+200,0,get,0,500,fastify-schema vs express-zod,cenario realista de mercado,-3.84,0.00794,sim,-1.0,grande,5,5,sim
+200,0,get,0,500,express-zod vs express-plain,custo da validacao no Express,-0.03,0.84127,nao,0.12,desprezivel,5,5,sim
+200,0,get,0,500,fastify-schema vs fastify-plain,efeito do schema no Fastify,-42.09,0.00794,sim,-1.0,grande,5,5,sim
+200,0,post,0,10,fastify-plain vs express-plain,efeito puro do framework,205.29,0.00794,sim,1.0,grande,5,5,sim
+200,0,post,0,10,fastify-schema vs express-zod,cenario realista de mercado,204.5,0.00794,sim,1.0,grande,5,5,sim
+200,0,post,0,10,express-zod vs express-plain,custo da validacao no Express,-7.63,0.00794,sim,-1.0,grande,5,5,sim
+200,0,post,0,10,fastify-schema vs fastify-plain,efeito do schema no Fastify,-7.87,0.00794,sim,-1.0,grande,5,5,sim
+200,0,post,0,100,fastify-plain vs express-plain,efeito puro do framework,201.2,0.00794,sim,1.0,grande,5,5,sim
+200,0,post,0,100,fastify-schema vs express-zod,cenario realista de mercado,195.7,0.00794,sim,1.0,grande,5,5,sim
+200,0,post,0,100,express-zod vs express-plain,custo da validacao no Express,-6.79,0.00794,sim,-1.0,grande,5,5,sim
+200,0,post,0,100,fastify-schema vs fastify-plain,efeito do schema no Fastify,-8.49,0.00794,sim,-1.0,grande,5,5,sim
+200,0,post,0,500,fastify-plain vs express-plain,efeito puro do framework,192.27,0.00794,sim,1.0,grande,5,5,sim
+200,0,post,0,500,fastify-schema vs express-zod,cenario realista de mercado,209.12,0.00794,sim,1.0,grande,5,5,sim
+200,0,post,0,500,express-zod vs express-plain,custo da validacao no Express,-10.6,0.00794,sim,-1.0,grande,5,5,sim
+200,0,post,0,500,fastify-schema vs fastify-plain,efeito do schema no Fastify,-5.45,0.00794,sim,-1.0,grande,5,5,sim

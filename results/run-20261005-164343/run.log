@@ -1,0 +1,19 @@
+[16:43:43] build
+[16:43:45] autocannon autocannon v8.0.0
+[16:43:45] saída: results/run-20261005-164343 | 10 execuções | ~16 min
+[16:43:45] == repetição 1/5 ==
+[16:43:45]   fastify-plain__get__io0__c100__r1
+[16:45:27]   express-plain__get__io0__c100__r1
+[16:47:10] == repetição 2/5 ==
+[16:47:10]   express-plain__get__io0__c100__r2
+[16:48:52]   fastify-plain__get__io0__c100__r2
+[16:50:35] == repetição 3/5 ==
+[16:50:35]   express-plain__get__io0__c100__r3
+[16:52:18]   fastify-plain__get__io0__c100__r3
+[16:54:00] == repetição 4/5 ==
+[16:54:00]   express-plain__get__io0__c100__r4
+[16:55:43]   fastify-plain__get__io0__c100__r4
+[16:57:25] == repetição 5/5 ==
+[16:57:25]   express-plain__get__io0__c100__r5
+[16:59:08]   fastify-plain__get__io0__c100__r5
+[17:00:50] concluído. rode: python3 scripts/4-analyze.py results/run-20261005-164343

@@ -1,0 +1,4 @@
+items,routes,endpoint,io_ms,concorrencia,comparacao,interpretacao,ganho_pct,p_mann_whitney,p_no_piso,cliffs_delta,magnitude,n_a,n_b,mesma_sessao
+50,0,get,0,100,fastify-plain vs express-plain,efeito puro do framework,137.23,0.00794,sim,1.0,grande,5,5,sim
+50,50,get,0,100,fastify-plain vs express-plain,efeito puro do framework,148.25,0.00794,sim,1.0,grande,5,5,sim
+50,200,get,0,100,fastify-plain vs express-plain,efeito puro do framework,183.79,0.00794,sim,1.0,grande,5,5,sim
