@@ -27,10 +27,10 @@ items,routes,endpoint,io_ms,concorrencia,comparacao,interpretacao,ganho_pct,p_ma
 50,0,get,0,10,fastify-schema vs express-zod,cenario realista de mercado,51.31,0.00794,sim,1.0,grande,5,5,sim
 50,0,get,0,10,express-zod vs express-plain,custo da validacao no Express,-0.36,0.84127,nao,-0.12,desprezivel,5,5,sim
 50,0,get,0,10,fastify-schema vs fastify-plain,efeito do schema no Fastify,-39.63,0.00794,sim,-1.0,grande,5,5,sim
-50,0,get,0,100,fastify-plain vs express-plain,efeito puro do framework,139.41,1e-05,sim,1.0,grande,10,10,sim
+50,0,get,0,100,fastify-plain vs express-plain,efeito puro do framework,141.6,0.00794,sim,1.0,grande,5,5,sim
 50,0,get,0,100,fastify-schema vs express-zod,cenario realista de mercado,46.9,0.00794,sim,1.0,grande,5,5,sim
-50,0,get,0,100,express-zod vs express-plain,custo da validacao no Express,0.44,1.0,nao,0.0,desprezivel,10,5,sim
-50,0,get,0,100,fastify-schema vs fastify-plain,efeito do schema no Fastify,-38.37,0.00067,sim,-1.0,grande,10,5,sim
+50,0,get,0,100,express-zod vs express-plain,custo da validacao no Express,0.57,0.54762,nao,-0.28,pequeno,5,5,sim
+50,0,get,0,100,fastify-schema vs fastify-plain,efeito do schema no Fastify,-38.85,0.00794,sim,-1.0,grande,5,5,sim
 50,0,get,0,500,fastify-plain vs express-plain,efeito puro do framework,153.28,0.00794,sim,1.0,grande,5,5,sim
 50,0,get,0,500,fastify-schema vs express-zod,cenario realista de mercado,56.18,0.00794,sim,1.0,grande,5,5,sim
 50,0,get,0,500,express-zod vs express-plain,custo da validacao no Express,0.53,1.0,nao,-0.04,desprezivel,5,5,sim
@@ -63,8 +63,6 @@ items,routes,endpoint,io_ms,concorrencia,comparacao,interpretacao,ganho_pct,p_ma
 50,0,post,50,100,fastify-schema vs express-zod,cenario realista de mercado,-0.3,0.00794,sim,-1.0,grande,5,5,sim
 50,0,post,50,100,express-zod vs express-plain,custo da validacao no Express,0.04,0.69048,nao,0.2,pequeno,5,5,sim
 50,0,post,50,100,fastify-schema vs fastify-plain,efeito do schema no Fastify,0.06,0.54762,nao,0.28,pequeno,5,5,sim
-50,50,get,0,100,fastify-plain vs express-plain,efeito puro do framework,148.25,0.00794,sim,1.0,grande,5,5,sim
-50,200,get,0,100,fastify-plain vs express-plain,efeito puro do framework,183.79,0.00794,sim,1.0,grande,5,5,sim
 200,0,get,0,10,fastify-plain vs express-plain,efeito puro do framework,58.54,0.00794,sim,1.0,grande,5,5,sim
 200,0,get,0,10,fastify-schema vs express-zod,cenario realista de mercado,-8.52,0.00794,sim,-1.0,grande,5,5,sim
 200,0,get,0,10,express-zod vs express-plain,custo da validacao no Express,0.25,0.54762,nao,0.28,pequeno,5,5,sim
