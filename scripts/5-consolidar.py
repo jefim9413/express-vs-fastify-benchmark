@@ -386,6 +386,11 @@ def make_figures(summary, outdir, conc_ref):
 
     inch = FIG_W_CM / 2.54
     feitas = []
+    # express-plain e express-zod tem valores quase identicos: sem variar o
+    # traco, a primeira some sob a segunda e a legenda mostra 4 series onde o
+    # grafico mostra 3.
+    TRACOS = ["-", "--", "-", "--"]
+    MARCAS = ["o", "s", "^", "D"]
 
     def save(fig, nome):
         base = os.path.join(outdir, nome)
@@ -416,7 +421,7 @@ def make_figures(summary, outdir, conc_ref):
     algo = False
     for endpoint in ("get", "post"):
         xs, ys = serie_items("express-plain", "fastify-plain", endpoint)
-        if xs:
+        if len(xs) > 1:
             ax.plot(xs, ys, marker="o", linewidth=1.4, label=endpoint.upper())
             algo = True
     if algo:
@@ -437,7 +442,7 @@ def make_figures(summary, outdir, conc_ref):
     for endpoint, rot in (("post", "POST — isola validação (resposta fixa)"),
                           ("get", "GET — isola serialização (resposta cresce)")):
         xs, ys = serie_items("fastify-plain", "fastify-schema", endpoint)
-        if xs:
+        if len(xs) > 1:
             ax.plot(xs, ys, marker="s" if endpoint == "post" else "o",
                     linewidth=1.4, label=rot)
             algo = True
@@ -479,23 +484,36 @@ def make_figures(summary, outdir, conc_ref):
         else:
             plt.close(fig)
 
-        # fig4 — CPU por requisição vs latência de dependência
+        # fig4 — UTILIZAÇÃO de CPU vs latência de dependência.
+        #
+        # NÃO usar us_cpu_por_req aqui. Com IO_DELAY_MS alto o modelo fechado
+        # limita a vazão (100 conexões / 50 ms = 2.000 req/s) e o sistema sai
+        # da saturação. Como us/req divide o CPU total pelas requisições, todo
+        # o custo de fundo do processo (laço de eventos, GC, timers) passa a
+        # ser dividido por muito menos requisições e o número infla — o que
+        # pareceria "esperar por I/O consome CPU", que é falso.
+        #
+        # A utilização é interpretável em qualquer regime, e mostra o achado
+        # real: a 50 ms os arms entregam a MESMA vazão, mas com ocupação de
+        # CPU muito diferente. A vantagem deixa de ser velocidade e vira custo.
         fig, ax = plt.subplots(figsize=(inch, inch * 0.55))
         algo = False
-        for arm in ("express-zod", "fastify-schema"):
+        for i, arm in enumerate(sorted({r["arm"] for r in summary})):
             xs, ys = [], []
             for io_ms in ios:
                 c = val(arm, items=50, routes=0, endpoint="get", io_ms=io_ms,
                         concorrencia=conc_ref)
-                if c and c["us_cpu_por_req"] != "":
+                if c and c["cpu_media_pct"] != "":
                     xs.append(str(io_ms))
-                    ys.append(c["us_cpu_por_req"])
-            if xs:
-                ax.plot(xs, ys, marker="o", linewidth=1.4, label=arm)
+                    ys.append(c["cpu_media_pct"])
+            if len(xs) > 1:
+                ax.plot(xs, ys, marker=MARCAS[i % 4], linestyle=TRACOS[i % 4],
+                        linewidth=1.4, label=arm)
                 algo = True
         if algo:
             ax.set_xlabel("Latência de dependência simulada (ms)")
-            ax.set_ylabel("CPU por requisição (µs)")
+            ax.set_ylabel("Utilização de CPU (%)")
+            ax.set_ylim(0, 105)
             ax.grid(True, linestyle=":", linewidth=0.6)
             ax.legend(fontsize=7)
             save(fig, "fig4_cpu_vs_io")
@@ -510,15 +528,15 @@ def make_figures(summary, outdir, conc_ref):
             continue
         fig, ax = plt.subplots(figsize=(inch, inch * 0.55))
         algo = False
-        for arm in sorted({r["arm"] for r in summary}):
+        for i, arm in enumerate(sorted({r["arm"] for r in summary})):
             pts = sorted((r["concorrencia"], r["rps_media"], r["rps_dp"]) for r in summary
                          if r["arm"] == arm and r["items"] == it_ref and r["routes"] == 0
                          and r["endpoint"] == endpoint and r["io_ms"] == 0)
             if len(pts) < 2:
                 continue
             ax.errorbar([str(p[0]) for p in pts], [p[1] for p in pts],
-                        yerr=[p[2] for p in pts], marker="o", capsize=3,
-                        linewidth=1.4, label=arm)
+                        yerr=[p[2] for p in pts], marker=MARCAS[i % 4], capsize=3,
+                        linestyle=TRACOS[i % 4], linewidth=1.4, label=arm)
             algo = True
         if algo:
             ax.set_xlabel("Carga (conexões simultâneas)")
@@ -530,31 +548,44 @@ def make_figures(summary, outdir, conc_ref):
         else:
             plt.close(fig)
 
-    # fig6 — custo: USD por milhão de requisições
-    fig, ax = plt.subplots(figsize=(inch, inch * 0.55))
-    arms = sorted({r["arm"] for r in summary})
+    # fig6 — quantos vCPUs para sustentar 10.000 req/s.
+    #
+    # Antes era USD por milhao de requisicoes, que dava valores entre 0,0005 e
+    # 0,0019: ilegiveis, e o eixo cortava a maior barra. "vCPUs para uma vazao
+    # alvo" e a mesma informacao numa unidade que se le, e independe do preco
+    # de nuvem adotado — o que tira do grafico a dependencia do
+    # PRICE_PER_VCPU_HOUR, que muda com provedor e data.
     itens = sorted({r["items"] for r in summary if r["items"] != -1})
-    largura = 0.8 / max(len(itens), 1)
-    algo = False
-    for i, it in enumerate(itens):
-        ys, xs = [], []
-        for j, arm in enumerate(arms):
-            c = val(arm, items=it, routes=0, endpoint="get", io_ms=0, concorrencia=conc_ref)
-            if c and c["usd_por_milhao_req"] != "":
-                xs.append(j + i * largura - 0.4 + largura / 2)
-                ys.append(c["usd_por_milhao_req"])
-        if xs:
-            ax.bar(xs, ys, width=largura, label=f"ITEMS={it}")
-            algo = True
-    if algo:
-        ax.set_xticks(range(len(arms)))
-        ax.set_xticklabels(arms, fontsize=7, rotation=15)
-        ax.set_ylabel("USD por milhão de requisições (GET)")
-        ax.grid(True, axis="y", linestyle=":", linewidth=0.6)
-        ax.legend(fontsize=7)
-        save(fig, "fig6_custo")
-    else:
-        plt.close(fig)
+    if len(itens) > 1:
+        fig, ax = plt.subplots(figsize=(inch, inch * 0.55))
+        arms = sorted({r["arm"] for r in summary})
+        largura = 0.8 / len(itens)
+        algo = False
+        topo = 0.0
+        for i, it in enumerate(itens):
+            ys, xs = [], []
+            for j, arm in enumerate(arms):
+                c = val(arm, items=it, routes=0, endpoint="get", io_ms=0,
+                        concorrencia=conc_ref)
+                if c and c["rps_media"] and c["cpu_media_pct"]:
+                    xs.append(j - 0.4 + largura / 2 + i * largura)
+                    ys.append(10000.0 / c["rps_media"] * c["cpu_media_pct"] / 100.0)
+            if xs:
+                barras = ax.bar(xs, ys, width=largura, label=f"ITEMS={it}")
+                ax.bar_label(barras, fmt="%.2f", fontsize=6, padding=1)
+                topo = max(topo, max(ys))
+                algo = True
+        if algo:
+            ax.set_xticks(range(len(arms)))
+            ax.set_xticklabels(arms, fontsize=8)
+            ax.set_ylabel("vCPUs para sustentar 10.000 req/s (GET)")
+            ax.set_ylim(0, topo * 1.18)   # espaco para o rotulo: sem isto a
+                                          # maior barra sai cortada em cima
+            ax.grid(True, axis="y", linestyle=":", linewidth=0.6)
+            ax.legend(fontsize=7)
+            save(fig, "fig6_custo")
+        else:
+            plt.close(fig)
 
     # fig7 — ganho vs número de rotas (só existe depois da coleta de roteamento)
     rotas = sorted({r["routes"] for r in summary})
