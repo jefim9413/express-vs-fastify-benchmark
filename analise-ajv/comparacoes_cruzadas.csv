@@ -1,0 +1,6 @@
+items,routes,endpoint,io_ms,concorrencia,comparacao,interpretacao,ganho_pct,p_mann_whitney,p_no_piso,cliffs_delta,magnitude,n_a,n_b,mesma_sessao
+50,0,post,0,100,fastify-plain vs express-plain,efeito puro do framework,199.26,0.00794,sim,1.0,grande,5,5,sim
+50,0,post,0,100,fastify-schema vs express-zod,cenario realista de mercado,197.46,0.00794,sim,1.0,grande,5,5,sim
+50,0,post,0,100,express-zod vs express-plain,custo da validacao no Express,-7.28,0.00794,sim,-1.0,grande,5,5,sim
+50,0,post,0,100,fastify-schema vs fastify-plain,efeito do schema no Fastify,-7.84,0.00794,sim,-1.0,grande,5,5,sim
+50,0,post,0,100,fastify-schema vs express-ajv,controle: mesmo Ajv dos dois lados,184.23,0.00794,sim,1.0,grande,5,5,sim

@@ -1,0 +1,6 @@
+items,routes,endpoint,io_ms,concorrencia,arm,framework,variant,bloco,sessao,reps,rps_media,rps_dp,rps_cv_pct,lat_media_ms,p99_mediana_ms,p99_pior_ms,cpu_media_pct,mem_media_mb,loop_p99_ms,vazao_mb_s,erro_pct,enlace_pct,req_por_vcpu_hora,usd_por_milhao_req,us_cpu_por_req
+50,0,post,0,100,express-ajv,express,ajv,run-20261005-193604,2026-10-05,5,16897.8,49.8,0.29,5.226,10,10,98.7,38.8,17.901,8.4,0.0,0,61653372,0.0007,58.39
+50,0,post,0,100,express-plain,express,plain,run-20261005-193604,2026-10-05,5,17414.4,84.6,0.49,5.06,9,10,98.6,38.2,17.596,8.65,0.0,0,63553608,0.0007,56.65
+50,0,post,0,100,express-zod,express,zod,run-20261005-193604,2026-10-05,5,16146.2,126.9,0.79,5.874,10,11,98.8,37.6,17.79,8.02,0.0,0,58846875,0.0007,61.18
+50,0,post,0,100,fastify-plain,fastify,plain,run-20261005-193604,2026-10-05,5,52113.6,211.0,0.4,1.328,5,5,99.5,38.6,14.336,22.61,0.0,0,188637355,0.0002,19.08
+50,0,post,0,100,fastify-schema,fastify,schema,run-20261005-193604,2026-10-05,5,48029.0,342.2,0.71,1.378,5,6,99.7,40.0,14.149,20.84,0.0,0,173358049,0.0002,20.77

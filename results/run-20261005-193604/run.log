@@ -1,0 +1,34 @@
+[19:36:04] build
+[19:36:05] autocannon autocannon v8.0.0
+[19:36:05] saída: results/run-20261005-193604 | 25 execuções | ~41 min
+[19:36:05] == repetição 1/5 ==
+[19:36:05]   express-ajv__post__io0__c100__r1
+[19:37:47]   express-plain__post__io0__c100__r1
+[19:39:30]   express-zod__post__io0__c100__r1
+[19:41:12]   fastify-schema__post__io0__c100__r1
+[19:42:55]   fastify-plain__post__io0__c100__r1
+[19:44:37] == repetição 2/5 ==
+[19:44:37]   express-zod__post__io0__c100__r2
+[19:46:20]   fastify-schema__post__io0__c100__r2
+[19:48:02]   fastify-plain__post__io0__c100__r2
+[19:49:45]   express-ajv__post__io0__c100__r2
+[19:51:26]   express-plain__post__io0__c100__r2
+[19:53:09] == repetição 3/5 ==
+[19:53:09]   express-zod__post__io0__c100__r3
+[19:54:51]   express-plain__post__io0__c100__r3
+[19:56:34]   express-ajv__post__io0__c100__r3
+[19:58:16]   fastify-plain__post__io0__c100__r3
+[19:59:59]   fastify-schema__post__io0__c100__r3
+[20:01:41] == repetição 4/5 ==
+[20:01:41]   fastify-plain__post__io0__c100__r4
+[20:03:24]   express-ajv__post__io0__c100__r4
+[20:05:07]   express-zod__post__io0__c100__r4
+[20:06:49]   express-plain__post__io0__c100__r4
+[20:08:32]   fastify-schema__post__io0__c100__r4
+[20:10:14] == repetição 5/5 ==
+[20:10:14]   fastify-schema__post__io0__c100__r5
+[20:11:57]   express-zod__post__io0__c100__r5
+[20:13:39]   express-plain__post__io0__c100__r5
+[20:15:22]   express-ajv__post__io0__c100__r5
+[20:17:04]   fastify-plain__post__io0__c100__r5
+[20:18:47] concluído. rode: python3 scripts/4-analyze.py results/run-20261005-193604
