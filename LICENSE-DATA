@@ -1,0 +1,64 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Jefferson de Souza Marques
+
+Esta licença aplica-se aos CONJUNTOS DE DADOS deste repositório, a saber:
+
+    results/        dados brutos das 495 execuções
+    analise/        consolidação dos eixos de carga útil e de latência
+    analise-rotas/  consolidação do eixo de roteamento
+    analise-ajv/    consolidação do bloco de controle de biblioteca
+
+O código-fonte do repositório (scripts/, common/, express-api/, fastify-api/,
+load/, coleta-rotas.sh, coleta-ajv.sh e docker-compose.yml) é licenciado sob a
+MIT License, cujos termos constam do arquivo LICENSE.
+
+------------------------------------------------------------------------------
+
+Você tem permissão para:
+
+  Compartilhar — copiar e redistribuir o material em qualquer suporte ou
+  formato, para qualquer fim, inclusive comercial.
+
+  Adaptar — remixar, transformar e criar a partir do material, para qualquer
+  fim, inclusive comercial.
+
+O licenciante não pode revogar estas liberdades desde que você respeite os
+termos da licença.
+
+De acordo com os seguintes termos:
+
+  Atribuição — Você deve dar o crédito apropriado, prover um link para a
+  licença e indicar se mudanças foram feitas. Você pode fazê-lo de qualquer
+  forma razoável, mas não de maneira que sugira que o licenciante endossa você
+  ou o seu uso.
+
+  Sem restrições adicionais — Você não pode aplicar termos jurídicos ou
+  medidas de caráter tecnológico que restrinjam legalmente outros de fazerem
+  algo que a licença permita.
+
+------------------------------------------------------------------------------
+
+ATRIBUIÇÃO SUGERIDA
+
+  MARQUES, Jefferson de Souza. Análise Comparativa de Desempenho entre
+  Express.js e Fastify em APIs REST. 2026. Trabalho de Conclusão de Curso
+  (Bacharelado em Ciência da Computação) — Universidade Federal do Ceará,
+  Campus de Quixadá, Quixadá, 2026. Conjunto de dados disponível em:
+  https://github.com/jefim9413/express-vs-fastify-benchmark.
+  Licenciado sob CC BY 4.0.
+
+------------------------------------------------------------------------------
+
+TEXTO INTEGRAL DA LICENÇA
+
+O texto integral e juridicamente vinculante desta licença está disponível em:
+
+  https://creativecommons.org/licenses/by/4.0/legalcode.pt
+
+Resumo em linguagem acessível:
+
+  https://creativecommons.org/licenses/by/4.0/deed.pt-br
+
+O resumo não é a licença: ele apenas apresenta, de forma legível, os termos do
+texto integral, que é o documento que rege o uso deste material.
