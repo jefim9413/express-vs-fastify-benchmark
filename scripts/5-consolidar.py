@@ -392,8 +392,50 @@ def make_figures(summary, outdir, conc_ref):
     TRACOS = ["-", "--", "-", "--"]
     MARCAS = ["o", "s", "^", "D"]
 
+    def marcar_eixo_x(fig):
+        # Os eixos cujo x e uma grandeza (itens, ms, rotas, conexoes) devem ter
+        # escala numerica: espacamento proporcional ao valor, nao categorias de
+        # largura igual. Aqui so se fixam as marcas nos niveis efetivamente
+        # medidos, para que nenhum valor intermediario seja rotulado.
+        for ax in fig.axes:
+            vals = set()
+            for ln in ax.get_lines():
+                # axhline/axvline usam transformada mista; nao sao dados.
+                if ln.get_transform() is not ax.transData:
+                    continue
+                xd = ln.get_xdata()
+                if len(xd) and all(isinstance(v, (int, float)) for v in xd):
+                    vals.update(float(v) for v in xd)
+            if not vals or ax.get_xscale() not in ("linear", "log"):
+                continue
+            niveis = sorted(vals)
+            if len(niveis) > 6:        # eixo continuo de verdade: deixa automatico
+                continue
+            ax.set_xticks(niveis)
+            ax.set_xticklabels([f"{v:g}" for v in niveis])
+            # Folga nas extremidades: sem ela o marcador do maior nivel encosta
+            # na moldura, porque a margem padrao de 5% nao da espaco ao simbolo.
+            if ax.get_xscale() == "linear" and niveis[-1] > niveis[0]:
+                folga = 0.09 * (niveis[-1] - niveis[0])
+                ax.set_xlim(niveis[0] - folga, niveis[-1] + folga)
+
+            # Se os dados nao cruzam o zero, encosta o limite do eixo y nele.
+            # Sem isso a linha de referencia do zero flutua acima da moldura e
+            # o grafico parece ter duas bordas paralelas.
+            ys = []
+            for ln in ax.get_lines():
+                if ln.get_transform() is ax.transData:
+                    ys.extend(float(v) for v in ln.get_ydata())
+            if ys:
+                lo_y, hi_y = ax.get_ylim()
+                if min(ys) >= 0 and lo_y < 0:
+                    ax.set_ylim(bottom=0)
+                elif max(ys) <= 0 and hi_y > 0:
+                    ax.set_ylim(top=0)
+
     def save(fig, nome):
         base = os.path.join(outdir, nome)
+        marcar_eixo_x(fig)
         fig.tight_layout()
         fig.savefig(base + ".pdf")                 # vetorial: exigência do LaTeX
         fig.savefig(base + ".png", dpi=300)
@@ -412,7 +454,7 @@ def make_figures(summary, outdir, conc_ref):
             ca = val(a_name, items=it, routes=0, endpoint=endpoint, io_ms=0, concorrencia=conc_ref)
             cb = val(b_name, items=it, routes=0, endpoint=endpoint, io_ms=0, concorrencia=conc_ref)
             if ca and cb and ca[campo]:
-                xs.append(str(it))
+                xs.append(float(it))
                 ys.append(pct(cb[campo], ca[campo]))
         return xs, ys
 
@@ -425,7 +467,7 @@ def make_figures(summary, outdir, conc_ref):
             ax.plot(xs, ys, marker="o", linewidth=1.4, label=endpoint.upper())
             algo = True
     if algo:
-        ax.axhline(0, color="black", linewidth=0.8)
+        ax.axhline(0, color="0.45", linewidth=0.8, linestyle="--", zorder=0)
         ax.set_xlabel("Itens no corpo da resposta (ITEMS)")
         ax.set_ylabel("Vantagem do Fastify (%)")
         ax.grid(True, linestyle=":", linewidth=0.6)
@@ -447,7 +489,7 @@ def make_figures(summary, outdir, conc_ref):
                     linewidth=1.4, label=rot)
             algo = True
     if algo:
-        ax.axhline(0, color="black", linewidth=0.8)
+        ax.axhline(0, color="0.45", linewidth=0.8, linestyle="--", zorder=0)
         ax.set_xlabel("Itens no corpo da resposta (ITEMS)")
         ax.set_ylabel("Efeito do schema no Fastify (%)")
         ax.grid(True, linestyle=":", linewidth=0.6)
@@ -469,13 +511,13 @@ def make_figures(summary, outdir, conc_ref):
                 cb = val("fastify-schema", items=50, routes=0, endpoint=endpoint,
                          io_ms=io_ms, concorrencia=conc_ref)
                 if ca and cb and ca["rps_media"]:
-                    xs.append(str(io_ms))
+                    xs.append(float(io_ms))
                     ys.append(pct(cb["rps_media"], ca["rps_media"]))
             if xs:
                 ax.plot(xs, ys, marker="o", linewidth=1.4, label=endpoint.upper())
                 algo = True
         if algo:
-            ax.axhline(0, color="black", linewidth=0.8)
+            ax.axhline(0, color="0.45", linewidth=0.8, linestyle="--", zorder=0)
             ax.set_xlabel("Latência de dependência simulada (ms)")
             ax.set_ylabel("Ganho do Fastify sobre o Express (%)")
             ax.grid(True, linestyle=":", linewidth=0.6)
@@ -504,7 +546,7 @@ def make_figures(summary, outdir, conc_ref):
                 c = val(arm, items=50, routes=0, endpoint="get", io_ms=io_ms,
                         concorrencia=conc_ref)
                 if c and c["cpu_media_pct"] != "":
-                    xs.append(str(io_ms))
+                    xs.append(float(io_ms))
                     ys.append(c["cpu_media_pct"])
             if len(xs) > 1:
                 ax.plot(xs, ys, marker=MARCAS[i % 4], linestyle=TRACOS[i % 4],
@@ -534,7 +576,7 @@ def make_figures(summary, outdir, conc_ref):
                          and r["endpoint"] == endpoint and r["io_ms"] == 0)
             if len(pts) < 2:
                 continue
-            ax.errorbar([str(p[0]) for p in pts], [p[1] for p in pts],
+            ax.errorbar([float(p[0]) for p in pts], [p[1] for p in pts],
                         yerr=[p[2] for p in pts], marker=MARCAS[i % 4], capsize=3,
                         linestyle=TRACOS[i % 4], linewidth=1.4, label=arm)
             algo = True
@@ -600,13 +642,13 @@ def make_figures(summary, outdir, conc_ref):
                 cb = val("fastify-plain", items=50, routes=rt, endpoint=endpoint,
                          io_ms=0, concorrencia=conc_ref)
                 if ca and cb and ca["rps_media"]:
-                    xs.append(str(rt))
+                    xs.append(float(rt))
                     ys.append(pct(cb["rps_media"], ca["rps_media"]))
             if len(xs) > 1:
                 ax.plot(xs, ys, marker="o", linewidth=1.4, label=endpoint.upper())
                 algo = True
         if algo:
-            ax.axhline(0, color="black", linewidth=0.8)
+            ax.axhline(0, color="0.45", linewidth=0.8, linestyle="--", zorder=0)
             ax.set_xlabel("Rotas registradas antes da rota medida")
             ax.set_ylabel("Vantagem do Fastify (%)")
             ax.grid(True, linestyle=":", linewidth=0.6)
